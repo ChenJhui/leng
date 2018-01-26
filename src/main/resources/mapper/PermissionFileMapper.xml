@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lengmo.authorization.mapper.PermissionFileMapper">
+  <resultMap id="BaseResultMap" type="com.lengmo.authorization.entity.PermissionFile">
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lengmo.authorization.entity.PermissionFile">
+    insert into permission_file (permission_id, file_id)
+    values (#{permissionId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lengmo.authorization.entity.PermissionFile">
+    insert into permission_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
